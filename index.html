@@ -1,327 +1,713 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YesDay studio | Digitálne svadobné riešenia</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <style>
-        :root { --cream: #f4f1ea; --gold: #d4af37; --dark: #1a1a1a; --white: #ffffff; --grey: #888; }
-        * { box-sizing: border-box; }
-        body { margin: 0; font-family: 'Montserrat', sans-serif; background-color: var(--cream); color: var(--dark); scroll-behavior: smooth; }
-        
-        nav { background: var(--white); padding: 20px; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: center; gap: 30px; }
-        nav a { text-decoration: none; color: var(--dark); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
+        :root {
+            --cream: #f4f1ea;
+            --gold: #d4af37;
+            --dark: #1a1a1a;
+            --white: #ffffff;
+            --grey: #888;
+            --light: #fafafa;
+            --border: #e9e9e9;
+        }
 
-        header { height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; margin-top: 60px; }
-        header h1 { font-family: 'Playfair Display', serif; font-size: 4rem; margin: 0; letter-spacing: 5px; }
-        header p { font-style: italic; color: #777; font-size: 1.2rem; }
+        * {
+            box-sizing: border-box;
+        }
 
-        section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; text-align: center; position: relative; }
-        h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 40px; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: var(--white); padding: 40px; border: 1px solid #eee; transition: 0.3s; display: flex; flex-direction: column; align-items: center; }
-        .card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .card .btn-link { text-decoration: none; color: var(--gold); font-weight: bold; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream);
+            color: var(--dark);
+            line-height: 1.6;
+        }
 
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .price-box { background: var(--white); padding: 40px; border: 1px solid var(--gold); display: flex; flex-direction: column;}
-        .price { font-size: 2rem; font-family: 'Playfair Display', serif; margin: 20px 0; }
-        .price-box ul { list-style: none; padding: 0; text-align: left; font-size: 0.85rem; line-height: 2; flex-grow: 1; margin-bottom: 30px; }
-        .price-box ul li::before { content: "— "; color: var(--gold); }
+        nav {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
 
-        /* FORM STYLES */
-        #dotaznik-sekcia { background: #fff; padding: 80px 20px; }
-        #booking-form-wrapper { max-width: 800px; margin: 0 auto; text-align: left; background: var(--white); padding: 40px; border: 1px solid #eee; box-shadow: 0 10px 50px rgba(0,0,0,0.05); position: relative; z-index: 10; }
-        .form-step { display: none; }
-        .form-step.active { display: block; }
-        .step-indicator { font-size: 0.7rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: block; }
-        h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-top: 0; margin-bottom: 25px; border-bottom: 1px solid var(--cream); padding-bottom: 15px; }
-        label { display: block; margin-top: 25px; font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--dark); }
-        input[type="text"], input[type="email"], input[type="date"], textarea, select { width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #eee; font-family: inherit; background: #fafafa; }
-        .btn-group { margin-top: 40px; display: flex; gap: 15px; }
-        button { padding: 15px 35px; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 0.7rem; font-weight: bold; transition: 0.3s; z-index: 20; position: relative; }
-        .btn-next { background: var(--dark); color: white; flex-grow: 1; }
-        .btn-prev { background: #f0f0f0; color: var(--dark); }
-        .checkbox-group { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 0.9rem; }
-        .checkbox-group input { width: auto; margin-top: 0; }
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
 
-        footer { padding: 60px 20px; background: var(--dark); color: white; text-align: center; }
-        footer a { color: var(--gold); text-decoration: none; }
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        header {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 70px;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin: 0;
+            letter-spacing: 5px;
+        }
+
+        .studio-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            letter-spacing: 8px;
+            font-size: 0.9rem;
+            margin-top: -10px;
+            margin-bottom: 0;
+        }
+
+        .hero-line {
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+            margin: 30px 0;
+        }
+
+        header p {
+            font-style: italic;
+            color: #777;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        section {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            scroll-margin-top: 110px;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .portfolio-grid,
+        .pricing-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .portfolio-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .pricing-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card,
+        .price-box {
+            background: var(--white);
+            padding: 40px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .card h3,
+        .price-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .card p,
+        .price-box p {
+            margin-top: 0;
+        }
+
+        .btn-link {
+            text-decoration: none;
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 2px;
+        }
+
+        .coming-soon {
+            font-size: 0.7rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        .price-box {
+            border: 1px solid var(--gold);
+            align-items: stretch;
+            text-align: left;
+        }
+
+        .price-box.featured {
+            transform: scale(1.05);
+            border-width: 2px;
+            z-index: 2;
+            background: #fffcf5;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .price-box h3,
+        .price-box .price {
+            text-align: center;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            margin: 20px 0;
+        }
+
+        .price-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 2;
+            flex-grow: 1;
+        }
+
+        .price-box ul li::before {
+            content: "— ";
+            color: var(--gold);
+        }
+
+        #dotaznik-sekcia {
+            background: #fff;
+            padding: 80px 20px;
+            max-width: none;
+        }
+
+        #dotaznik-sekcia .inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #booking-form-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            background: var(--white);
+            padding: 40px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        .form-intro {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .step-indicator {
+            font-size: 0.7rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        #booking-form-wrapper h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--cream);
+            padding-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-top: 25px;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dark);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid var(--border);
+            font-family: inherit;
+            background: var(--light);
+            font-size: 0.95rem;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 12px;
+            font-size: 0.95rem;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            margin-top: 0;
+            transform: scale(1.1);
+        }
+
+        .btn-group {
+            margin-top: 40px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 15px 35px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        button:hover {
+            opacity: 0.92;
+        }
+
+        .btn-next {
+            background: var(--dark);
+            color: white;
+            flex-grow: 1;
+        }
+
+        .btn-prev {
+            background: #f0f0f0;
+            color: var(--dark);
+        }
+
+        .btn-submit {
+            background: var(--gold);
+            color: white;
+            flex-grow: 1;
+        }
+
+        #success-message {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background: #faf7ef;
+            border: 1px solid #eadba7;
+            margin-top: 20px;
+        }
+
+        #success-message.show {
+            display: block;
+        }
+
+        footer {
+            padding: 60px 20px;
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                gap: 16px;
+                padding: 16px 12px;
+            }
+
+            header h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            #booking-form-wrapper,
+            .card,
+            .price-box {
+                padding: 25px;
+            }
+
+            .price-box.featured {
+                transform: none;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn-prev,
+            .btn-next,
+            .btn-submit {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
 
-<nav>
-    <a href="#portfolio">Portfólio</a>
-    <a href="#cennik">Cenník</a>
-    <a href="#dotaznik-sekcia">Dotazník</a>
-    <a href="https://www.instagram.com/yesdaystudio/" target="_blank">Instagram</a>
-</nav>
+    <nav>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#cennik">Cenník</a>
+        <a href="#dotaznik-sekcia">Dotazník</a>
+        <a href="https://www.instagram.com/yesdaystudio/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </nav>
 
-<header>
-    <h1>YES DAY</h1>
-    <h2 style="font-family: 'Montserrat'; font-weight: 300; letter-spacing: 8px; font-size: 0.9rem; margin-top: -10px;">STUDIO</h2>
-    <p>Vaša svadba v digitálnom štýle</p>
-</header>
+    <header>
+        <h1>YES DAY</h1>
+        <p class="studio-subtitle">STUDIO</p>
+        <div class="hero-line"></div>
+        <p>Vaša svadba v digitálnom štýle</p>
+    </header>
 
-<section id="portfolio">
-    <h2>Inšpirujte sa</h2>
-    <div class="portfolio-grid">
-        <div class="card">
-            <h3>Diana & Anton</h3>
-            <p>Elegantný svadobný web s kompletným info pre hostí.</p>
-            <a href="https://yesdaystudio.github.io/diana-anton.github.io/" target="_blank" class="btn-link">Pozrieť web</a>
-        </div>
-        <div class="card"><h3>Minimalist Grey</h3><p>Už čoskoro</p></div>
-        <div class="card"><h3>Boho Wild</h3><p>Už čoskoro</p></div>
-    </div>
-</section>
+    <section id="portfolio">
+        <h2>Inšpirujte sa</h2>
+        <div class="portfolio-grid">
+            <div class="card">
+                <h3>Diana & Anton</h3>
+                <p>Elegantný svadobný web s kompletným info pre hostí.</p>
+                <a href="https://yesdaystudio.github.io/diana-anton.github.io/" target="_blank" rel="noopener noreferrer" class="btn-link">Pozrieť web</a>
+            </div>
 
-<section id="cennik" style="background: var(--white);">
-    <h2>Balíčky služieb</h2>
-    <div class="pricing-grid">
-        <div class="price-box"><h3>DIGI ŠTART</h3><div class="price">49€</div><ul><li>Svadobný web na 1 rok</li><li>RSVP formulár</li><li>QR kód</li></ul></div>
-        <div class="price-box" style="transform: scale(1.05); border-width: 2px; z-index: 2;"><h3>YESDAY KOMPLET</h3><div class="price">99€</div><ul><li>Všetko z balíka ŠTART</li><li>Návrh oznámenia</li><li>Tlačové PDF</li></ul></div>
-        <div class="price-box"><h3>PREMIUM</h3><div class="price">Individuálne</div><ul><li>Vlastná doména</li><li>Správa hostí</li><li>Tlačoviny</li></ul></div>
-    </div>
-</section>
+            <div class="card">
+                <h3>Minimalist Grey</h3>
+                <p>Čistý dizajn zameraný na modernú typografiu a jemnú eleganciu.</p>
+                <span class="coming-soon">Už čoskoro</span>
+            </div>
 
-<section id="dotaznik-sekcia">
-    <h2>Plánovací dotazník</h2>
-    <div id="booking-form-wrapper">
-        <div style="text-align: center; margin-bottom: 30px;">
-            <h3 style="border: none;">Ďakujeme, že ste si vybrali Yesday studio 💍</h3>
-            <p style="font-size: 0.9rem; color: var(--grey);">Tento formulár nám pomôže vytvoriť všetko podľa vašich predstáv.</p>
-        </div>
-
-        <div class="form-step active" id="step1">
-            <span class="step-indicator">Sekcia 1 zo 7</span>
-            <h3>Základné informácie</h3>
-            <label>1. Mená snúbencov</label><input type="text">
-            <label>2. Email</label><input type="email">
-            <label>3. Dátum svadby</label><input type="date">
-            <label>4. Miesto obradu</label><input type="text">
-            <label>5. Miesto oslavy</label><input type="text">
-            <label>6. Čas obradu</label><input type="text">
-            <div class="btn-group"><button type="button" class="btn-next" onclick="goToStep(2)">Pokračovať</button></div>
-        </div>
-
-        <div class="form-step" id="step2">
-            <span class="step-indicator">Sekcia 2 zo 7</span>
-            <h3>Obsah svadobného webu</h3>
-            <label>7. Aké sekcie chcete mať na webe?</label>
-            <div class="checkbox-group"><input type="checkbox"> Harmonogram</div>
-            <div class="checkbox-group"><input type="checkbox"> Ubytovanie</div>
-            <div class="checkbox-group"><input type="checkbox"> Doprava / parkovanie</div>
-            <div class="checkbox-group"><input type="checkbox"> Dress code</div>
-            <div class="checkbox-group"><input type="checkbox"> Dary / wishlist</div>
-            <label>8. Texty pre web (ak máte)</label>
-            <textarea rows="4" placeholder="Ak ešte nemáte, nevadí – doplníme spolu."></textarea>
-            <div class="btn-group">
-                <button type="button" class="btn-prev" onclick="goToStep(1)">Späť</button>
-                <button type="button" class="btn-next" onclick="goToStep(3)">Pokračovať</button>
+            <div class="card">
+                <h3>Boho Wild</h3>
+                <p>Prírodné tóny, jemná romantika a uvoľnený svadobný štýl.</p>
+                <span class="coming-soon">Už čoskoro</span>
             </div>
         </div>
+    </section>
 
-        <div class="form-step" id="step3">
-            <span class="step-indicator">Sekcia 3 zo 7</span>
-            <h3>RSVP formulár</h3>
-            <label>9. Chcete formulár na potvrdenie účasti (RSVP)?</label>
-            <select><option>Áno</option><option>Nie</option></select>
-            <label>10. Čo má formulár obsahovať?</label>
-            <div class="checkbox-group"><input type="checkbox"> Potvrdenie účasti</div>
-            <div class="checkbox-group"><input type="checkbox"> Počet osôb</div>
-            <div class="checkbox-group"><input type="checkbox"> Výber jedla</div>
-            <div class="btn-group">
-                <button type="button" class="btn-prev" onclick="goToStep(2)">Späť</button>
-                <button type="button" class="btn-next" onclick="goToStep(4)">Pokračovať</button>
+    <section id="cennik" style="background: var(--white);">
+        <h2>Balíčky služieb</h2>
+        <div class="pricing-grid">
+            <div class="price-box">
+                <h3>DIGI ŠTART</h3>
+                <div class="price">49€</div>
+                <ul>
+                    <li>Svadobný web na 1 rok</li>
+                    <li>RSVP formulár</li>
+                    <li>QR kód</li>
+                </ul>
+            </div>
+
+            <div class="price-box featured">
+                <h3>YESDAY KOMPLET</h3>
+                <div class="price">99€</div>
+                <ul>
+                    <li>Všetko z balíka ŠTART</li>
+                    <li>Návrh oznámenia</li>
+                    <li>Tlačové PDF</li>
+                </ul>
+            </div>
+
+            <div class="price-box">
+                <h3>PREMIUM</h3>
+                <div class="price">Individuálne</div>
+                <ul>
+                    <li>Vlastná doména</li>
+                    <li>Správa hostí</li>
+                    <li>Tlačoviny</li>
+                </ul>
             </div>
         </div>
+    </section>
 
-        <div class="form-step" id="step4">
-            <span class="step-indicator">Sekcia 4 zo 7</span>
-            <h3>Dizajn</h3>
-            <label>11. Aký štýl sa vám páči?</label>
-            <select><option>romantický</option><option>moderný</option><option>minimalistický</option><option>elegantný</option></select>
-            <label>12. Farby svadby</label><input type="text">
-            <label>13. Inšpirácie (Pinterest / odkazy)</label><textarea rows="3"></textarea>
-            <label>14. Čo sa vám určite nepáči?</label><textarea rows="3"></textarea>
-            <div class="btn-group">
-                <button type="button" class="btn-prev" onclick="goToStep(3)">Späť</button>
-                <button type="button" class="btn-next" onclick="goToStep(5)">Pokračovať</button>
+    <section id="dotaznik-sekcia">
+        <div class="inner">
+            <h2>Plánovací dotazník</h2>
+
+            <div id="booking-form-wrapper">
+                <div class="form-intro">
+                    <h3 style="border: none; margin-bottom: 10px;">Ďakujeme, že ste si vybrali YesDay studio 💍</h3>
+                    <p style="font-size: 0.95rem; color: var(--grey);">
+                        Tento formulár nám pomôže vytvoriť všetko podľa vašich predstáv.
+                    </p>
+                </div>
+
+                <form id="booking-form">
+                    <div class="form-step active" id="step1">
+                        <span class="step-indicator">Sekcia 1 zo 7</span>
+                        <h3>Základné informácie</h3>
+
+                        <label for="names">1. Mená snúbencov</label>
+                        <input id="names" name="names" type="text" required />
+
+                        <label for="email">2. Email</label>
+                        <input id="email" name="email" type="email" required />
+
+                        <label for="date">3. Dátum svadby</label>
+                        <input id="date" name="date" type="date" />
+
+                        <label for="ceremony-place">4. Miesto obradu</label>
+                        <input id="ceremony-place" name="ceremony_place" type="text" />
+
+                        <label for="party-place">5. Miesto oslavy</label>
+                        <input id="party-place" name="party_place" type="text" />
+
+                        <label for="ceremony-time">6. Čas obradu</label>
+                        <input id="ceremony-time" name="ceremony_time" type="text" placeholder="napr. 15:00" />
+
+                        <div class="btn-group">
+                            <button type="button" class="btn-next" onclick="goToStep(2)">Pokračovať</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" id="step2">
+                        <span class="step-indicator">Sekcia 2 zo 7</span>
+                        <h3>Obsah svadobného webu</h3>
+
+                        <label>7. Aké sekcie chcete mať na webe?</label>
+                        <div class="checkbox-group"><input type="checkbox" name="sections" value="Harmonogram" /> Harmonogram</div>
+                        <div class="checkbox-group"><input type="checkbox" name="sections" value="Ubytovanie" /> Ubytovanie</div>
+                        <div class="checkbox-group"><input type="checkbox" name="sections" value="Doprava / parkovanie" /> Doprava / parkovanie</div>
+                        <div class="checkbox-group"><input type="checkbox" name="sections" value="Dress code" /> Dress code</div>
+                        <div class="checkbox-group"><input type="checkbox" name="sections" value="Dary / wishlist" /> Dary / wishlist</div>
+
+                        <label for="web-texts">8. Texty pre web (ak máte)</label>
+                        <textarea id="web-texts" name="web_texts" rows="4" placeholder="Ak ešte nemáte, nevadí – doplníme spolu."></textarea>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn-prev" onclick="goToStep(1)">Späť</button>
+                            <button type="button" class="btn-next" onclick="goToStep(3)">Pokračovať</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" id="step3">
+                        <span class="step-indicator">Sekcia 3 zo 7</span>
+                        <h3>RSVP formulár</h3>
+
+                        <label for="rsvp">9. Chcete formulár na potvrdenie účasti (RSVP)?</label>
+                        <select id="rsvp" name="rsvp">
+                            <option>Áno</option>
+                            <option>Nie</option>
+                        </select>
+
+                        <label>10. Čo má formulár obsahovať?</label>
+                        <div class="checkbox-group"><input type="checkbox" name="rsvp_fields" value="Potvrdenie účasti" /> Potvrdenie účasti</div>
+                        <div class="checkbox-group"><input type="checkbox" name="rsvp_fields" value="Počet osôb" /> Počet osôb</div>
+                        <div class="checkbox-group"><input type="checkbox" name="rsvp_fields" value="Výber jedla" /> Výber jedla</div>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn-prev" onclick="goToStep(2)">Späť</button>
+                            <button type="button" class="btn-next" onclick="goToStep(4)">Pokračovať</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" id="step4">
+                        <span class="step-indicator">Sekcia 4 zo 7</span>
+                        <h3>Dizajn</h3>
+
+                        <label for="style">11. Aký štýl sa vám páči?</label>
+                        <select id="style" name="style">
+                            <option>romantický</option>
+                            <option>moderný</option>
+                            <option>minimalistický</option>
+                            <option>elegantný</option>
+                        </select>
+
+                        <label for="colors">12. Farby svadby</label>
+                        <input id="colors" name="colors" type="text" />
+
+                        <label for="inspiration">13. Inšpirácie (Pinterest / odkazy)</label>
+                        <textarea id="inspiration" name="inspiration" rows="3"></textarea>
+
+                        <label for="dislikes">14. Čo sa vám určite nepáči?</label>
+                        <textarea id="dislikes" name="dislikes" rows="3"></textarea>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn-prev" onclick="goToStep(3)">Späť</button>
+                            <button type="button" class="btn-next" onclick="goToStep(5)">Pokračovať</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" id="step5">
+                        <span class="step-indicator">Sekcia 5 zo 7</span>
+                        <h3>Pozvánky</h3>
+
+                        <label for="invite-text">15. Text na pozvánku</label>
+                        <textarea id="invite-text" name="invite_text" rows="3"></textarea>
+
+                        <label for="invite-count">16. Počet pozvánok</label>
+                        <input id="invite-count" name="invite_count" type="text" />
+
+                        <label for="print-interest">17. Máte záujem o tlač pozvánok?</label>
+                        <select id="print-interest" name="print_interest">
+                            <option>Áno</option>
+                            <option>Nie</option>
+                        </select>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn-prev" onclick="goToStep(4)">Späť</button>
+                            <button type="button" class="btn-next" onclick="goToStep(6)">Pokračovať</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" id="step6">
+                        <span class="step-indicator">Sekcia 6 zo 7</span>
+                        <h3>QR & technické veci</h3>
+
+                        <label for="qr-placement">18. Umiestnenie QR kódu</label>
+                        <select id="qr-placement" name="qr_placement">
+                            <option>priamo na pozvánke</option>
+                            <option>samostatná kartička</option>
+                            <option>ešte sa rozhodneme</option>
+                        </select>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn-prev" onclick="goToStep(5)">Späť</button>
+                            <button type="button" class="btn-next" onclick="goToStep(7)">Pokračovať</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" id="step7">
+                        <span class="step-indicator">Sekcia 7 zo 7</span>
+                        <h3>Na záver</h3>
+
+                        <label for="deadline">19. Deadline</label>
+                        <input id="deadline" name="deadline" type="date" />
+
+                        <label for="notes">20. Je ešte niečo, čo by sme mali vedieť?</label>
+                        <textarea id="notes" name="notes" rows="4"></textarea>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn-prev" onclick="goToStep(6)">Späť</button>
+                            <button type="submit" class="btn-submit">Odoslať</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="success-message">
+                    <h3 style="border: none; margin-bottom: 10px;">Hotovo! Ďakujeme za vyplnenie.</h3>
+                    <p>Formulár bol úspešne odoslaný.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="form-step" id="step5">
-            <span class="step-indicator">Sekcia 5 zo 7</span>
-            <h3>Pozvánky</h3>
-            <label>15. Text na pozvánku</label><textarea rows="3"></textarea>
-            <label>16. Počet pozvánok</label><input type="text">
-            <label>17. Máte záujem o tlač pozvánok?</label><select><option>Áno</option><option>Nie</option></select>
-            <div class="btn-group">
-                <button type="button" class="btn-prev" onclick="goToStep(4)">Späť</button>
-                <button type="button" class="btn-next" onclick="goToStep(6)">Pokračovať</button>
-            </div>
-        </div>
+    <footer>
+        <a href="https://www.instagram.com/yesdaystudio/" target="_blank" rel="noopener noreferrer">@yesdaystudio</a>
+        <p>&copy; 2026 YesDay studio</p>
+    </footer>
 
-        <div class="form-step" id="step6">
-            <span class="step-indicator">Sekcia 6 zo 7</span>
-            <h3>QR & technické veci</h3>
-            <label>18. Umiestnenie QR kódu</label>
-            <select><option>priamo na pozvánke</option><option>samostatná kartička</option><option>ešte sa rozhodneme</option></select>
-            <div class="btn-group">
-                <button type="button" class="btn-prev" onclick="goToStep(5)">Späť</button>
-                <button type="button" class="btn-next" onclick="goToStep(7)">Pokračovať</button>
-            </div>
-        </div>
+    <script>
+        function goToStep(stepNumber) {
+            const steps = document.querySelectorAll('.form-step');
+            steps.forEach((step) => step.classList.remove('active'));
 
-        <div class="form-step" id="step7">
-            <span class="step-indicator">Sekcia 7 zo 7</span>
-            <h3>Na záver</h3>
-            <label>19. Deadline</label><input type="date">
-            <label>20. Je ešte niečo, čo by sme mali vedieť?</label><textarea rows="4"></textarea>
-            <div class="btn-group">
-                <button type="button" class="btn-prev" onclick="goToStep(6)">Späť</button>
-                <button type="button" class="btn-next" style="background: var(--gold);" onclick="alert('Hotovo! Ďakujeme za vyplnenie.')">Odoslať</button>
-            </div>
-        </div>
-    </div>
-</section>
+            const targetStep = document.getElementById('step' + stepNumber);
+            if (targetStep) {
+                targetStep.classList.add('active');
+            }
 
-<footer>
-    <a href="https://www.instagram.com/yesdaystudio/" target="_blank">@yesdaystudio</a>
-    <p>&copy; 2024 YesDay studio</p>
-</footer>
+            const section = document.getElementById('dotaznik-sekcia');
+            const nav = document.querySelector('nav');
+            const navHeight = nav ? nav.offsetHeight : 0;
+            const top = section.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
 
-<script>
-    function goToStep(stepNumber) {
-        // Skryť všetky kroky
-        const steps = document.querySelectorAll('.form-step');
-        steps.forEach(s => s.classList.remove('active'));
-        
-        // Ukázať vybraný krok
-        const targetStep = document.getElementById('step' + stepNumber);
-        if(targetStep) {
-            targetStep.classList.add('active');
+            window.scrollTo({
+                top: top,
+                behavior: 'smooth'
+            });
         }
-        
-        // Odrolovať na začiatok dotazníka
-        document.getElementById('dotaznik-sekcia').scrollIntoView({behavior: 'smooth'});
-    }
-</script>
+
+        document.getElementById('booking-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            document.getElementById('booking-form').style.display = 'none';
+            document.getElementById('success-message').classList.add('show');
+
+            const section = document.getElementById('dotaznik-sekcia');
+            const nav = document.querySelector('nav');
+            const navHeight = nav ? nav.offsetHeight : 0;
+            const top = section.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+
+            window.scrollTo({
+                top: top,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 
 </body>
 </html>
-        /* FORM STYLES */
-        #dotaznik { background: #fff; padding: 60px 20px; border-top: 1px solid #eee; }
-        #booking-form { max-width: 800px; margin: 0 auto; text-align: left; background: var(--white); padding: 40px; box-shadow: 0 10px 50px rgba(0,0,0,0.05); }
-        .form-intro { text-align: center; margin-bottom: 40px; }
-        .form-step { display: none; }
-        .form-step.active { display: block; }
-        .step-indicator { font-size: 0.7rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: block; }
-        h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-top: 0; margin-bottom: 25px; border-bottom: 1px solid var(--cream); padding-bottom: 15px; }
-        label { display: block; margin-top: 25px; font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--dark); }
-        input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="time"], input[type="date"], textarea, select { width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #eee; font-family: inherit; background: #fafafa; }
-        .btn-group { margin-top: 40px; display: flex; gap: 15px; }
-        button { padding: 15px 35px; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 0.7rem; font-weight: bold; transition: 0.3s; }
-        .btn-next { background: var(--dark); color: white; flex-grow: 1; }
-        .btn-prev { background: #f0f0f0; color: var(--dark); }
-        .checkbox-group { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 0.9rem; }
-        .checkbox-group input { width: auto; margin-top: 0; transform: scale(1.2); }
-        .note { font-size: 0.75rem; color: var(--grey); margin-top: 5px; font-style: italic; }
-
-        footer { padding: 60px 20px; background: var(--dark); color: white; text-align: center; }
-        footer a { color: var(--gold); text-decoration: none; }
-    </style>
-</head>
-<body>
-
-<nav>
-    <a href="#portfolio">Portfólio</a>
-    <a href="#cennik">Cenník</a>
-    <a href="#dotaznik">Dotazník</a>
-    <a href="https://www.instagram.com/yesdaystudio/" target="_blank">Instagram</a>
-</nav>
-
-<header>
-    <h1>YES DAY</h1>
-    <h2 style="font-family: 'Montserrat'; font-weight: 300; letter-spacing: 8px; font-size: 0.9rem; margin-top: -10px;">STUDIO</h2>
-    <div style="width: 40px; height: 1px; background: var(--gold); margin: 30px 0;"></div>
-    <p>Vaša svadba v digitálnom štýle</p>
-</header>
-
-<section id="portfolio">
-    <h2>Inšpirujte sa</h2>
-    <div class="portfolio-grid">
-        <div class="card">
-            <h3>Diana & Anton</h3>
-            <p>Elegantný svadobný web s kompletným info pre hostí.</p>
-            <a href="https://yesdaystudio.github.io/diana-anton.github.io/" target="_blank" class="btn-link">Pozrieť web</a>
-        </div>
-        <div class="card">
-            <h3>Minimalist Grey</h3>
-            <p>Čistý dizajn zameraný na čiernobielu fotografiu a modernú typografiu.</p>
-            <span style="font-size: 0.7rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase;">Už čoskoro</span>
-        </div>
-        <div class="card">
-            <h3>Boho Wild</h3>
-            <p>Prírodné tóny, šalviová zelená a organické prvky pre uvoľnenú svadbu.</p>
-            <span style="font-size: 0.7rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase;">Už čoskoro</span>
-        </div>
-    </div>
-</section>
-
-<section id="cennik" style="background: var(--white);">
-    <h2>Balíčky služieb</h2>
-    <div class="pricing-grid">
-        <div class="price-box">
-            <h3>DIGI ŠTART</h3>
-            <div class="price">49€</div>
-            <ul>
-                <li>Svadobný web na 1 rok</li>
-                <li>RSVP formulár pre hostí</li>
-                <li>Interaktívna mapa a program</li>
-                <li>Digitálny QR kód pre vás</li>
-            </ul>
-        </div>
-        <div class="price-box" style="transform: scale(1.05); background: #fffcf5; box-shadow: 0 10px 40px rgba(0,0,0,0.05); z-index: 2;">
-            <h3>YESDAY KOMPLET</h3>
-            <div class="price">99€</div>
-            <ul>
-                <li>Všetko z balíka DIGI ŠTART</li>
-                <li>Návrh grafiky oznámenia</li>
-                <li>Zladenie dizajnu s webom</li>
-                <li>Tlačové podklady (PDF)</li>
-            </ul>
-        </div>
-        <div class="price-box">
-            <h3>PREMIUM</h3>
-            <div class="price">Individuálne</div>
-            <ul>
-                <li>Všetko z balíka KOMPLET</li>
-                <li>Vlastná doména (.sk)</li>
-                <li>Správa zoznamu hostí</li>
-                <li>Kompletné svadobné tlačoviny</li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-<section id="dotaznik">
-    <h2>Vytvorme váš svadobný svet</h2>
-    
-    <div id="booking-form">
-        <div class="form-intro">
-            <h3 style="border: none; margin-bottom: 10px;">Ďakujeme, že ste si vybrali Yesday studio 💍</h3>
-            <p style="color: var(--grey); line-height: 1.6;">Tento formulár nám pomôže vytvoriť svadobný web a pozvánky presne podľa vašich predstáv.<br>Ak niečo ešte nemáte pripravené, nevadí — doladíme spolu.</p>
-        </div>
-
-        <form>
-            <div class="form-step active">
-                <span class="step-indicator">Sekcia 1 zo 7</span>
-                <h3>Základné informácie</h3>
-                
-                <label>1. Mená snúbencov</label>
-                <input type="text" placeholder
