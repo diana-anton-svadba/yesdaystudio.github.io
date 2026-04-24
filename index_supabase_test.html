@@ -1526,16 +1526,19 @@
             alert('Základné údaje sa uložili, ale brief sa neuložil: ' + briefError.message);
             return;
         }
+this.reset();
 
-document.getElementById('thank-you-message').style.display = 'block';
-        this.reset();
-        document.getElementById('selected-package-text').textContent = 'zatiaľ nevybraný';
-        document.getElementById('selected-package-input').value = '';
-        document.getElementById('dotaznik-sekcia').classList.remove('visible');
-        currentPackage = '';
-        updateRsvpVisibility('');
-        goToStep(1);
-    });
+document.getElementById('booking-form-wrapper').style.display = 'none';
+
+const thankYouMessage = document.getElementById('thank-you-message');
+thankYouMessage.style.display = 'block';
+
+document.getElementById('dotaznik-sekcia').classList.add('visible');
+
+thankYouMessage.scrollIntoView({
+  behavior: 'smooth',
+  block: 'center'
+});
 
     updateRsvpVisibility('');
 </script>
